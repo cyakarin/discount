@@ -1,1 +1,59 @@
-test
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>割引計算くん</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,
+                                   initial-scale=1.0,
+                                   maximum-scale=1.0,
+                                   user-scalable=no,
+                                   minimal-ui">
+    <link rel="stylesheet" href="//cdn.kik.com/app/3.0.0/app.min.css">
+    <style>
+      /* put your styles here */
+    </style>
+  </head>
+  <body>
+    <div class="app-page" data-page="home">
+      <div class="app-topbar">
+        <div class="app-title">割引計算くん</div>
+      </div>
+      <div class="app-content">
+        <div class="app-section">
+          <input id="pay" class="app-input" value="">
+        </div>
+        <div class="app-section">
+          <select id="discount">
+            <option value="0.03">今日は 3% OFF</option>
+            <option value="0.05">今日は 5% OFF</option>
+          </select>
+          <div class="app-button" onClick="calculate();">計算する</div>
+        </div>
+        <div class="app-section">
+          <p id="discount-result"></p>
+          <p id="pay-result"></p>
+        </div>
+      </div>
+    </div>
+    <script src="//zeptojs.com/zepto.min.js"></script>
+    <script src="//cdn.kik.com/app/3.0.0/app.min.js"></script>
+    <script>
+      App.load('home');
+
+      function calculate() {
+        var pay = document.getElementById('pay').value;
+        var discount = document.getElementById('discount').value;
+        var check = pay.match(/^[0-9]*$/);
+        if(check) {
+          var discountResult = Math.floor(pay * discount);
+          var payResult = pay - discountResult;
+          document.getElementById('discount-result').innerHTML = (discountResult + " 円引き");
+          document.getElementById('pay-result').innerHTML = (payResult + " 円");
+        } else {
+          document.getElementById('discount-result').innerHTML = '';
+          document.getElementById('pay-result').innerHTML = '数字じゃないよ';
+        }
+      }
+    </script>
+  </body>
+</html>
