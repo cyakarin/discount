@@ -45,7 +45,7 @@
         var discount = document.getElementById('discount').value;
         var check = pay.match(/^[0-9]*$/);
         if(check) {
-          var discountResult = Math.floor(pay * discount);
+          var discountResult = Math.ceil(pay * discount);
           var payResult = pay - discountResult;
           document.getElementById('discount-result').innerHTML = (discountResult + " 円引き");
           document.getElementById('pay-result').innerHTML = (payResult + " 円");
